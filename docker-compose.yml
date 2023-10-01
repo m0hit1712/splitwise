@@ -1,0 +1,45 @@
+version: '3'
+
+volumes:
+  local_postgres_data: {}
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: splitwise
+      POSTGRES_PASSWORD: password
+    networks:
+      - splitwise-network
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data:Z
+    ports:
+      - "5432:5432"
+
+  splitwise:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    networks:
+      - splitwise-network
+    environment:
+      - DB_HOST=postgres
+      - DB_NAME=splitwise
+      - DB_USER=postgres
+      - DB_PASS=password
+    command:
+      - bash
+      - -c
+      - |
+        python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/splitwise
+    depends_on:
+      - postgres
+
+networks:
+  splitwise-network:
+    name: splitwise-network
+
