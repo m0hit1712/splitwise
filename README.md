@@ -18,8 +18,8 @@ To stop docker containers
 
 
 ### URLs and Testing
-For schema and API structure: http://127.0.0.1:8000/redoc/
-For API testing: http://127.0.0.1:8000/swagger/
+- For schema and API structure: http://127.0.0.1:8000/redoc/
+- For API testing: http://127.0.0.1:8000/swagger/
 
 
 ### Model Structure
