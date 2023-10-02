@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from splitwise.models import Due, Expense, Transaction
+from splitwise.models import Due, Expense, Transaction, User
 
 
 # Register your models here.
@@ -18,6 +18,16 @@ class DueAdmin(admin.ModelAdmin):
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = [
+        "username",
+        "email",
+    ]
+
+
 
 
 

@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "user_auth",
     "splitwise",
     "drf_spectacular",
 ]
@@ -58,7 +57,7 @@ ROOT_URLCONF = "src.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -74,15 +73,9 @@ TEMPLATES = [
 SPECTACULAR_SETTINGS = {
     "TITLE": "SplitWise API",
     "VERSION": "1.0.0",
-    "SERVE_INCLUDE_SCHEMA": False,
-    "SWAGGER_UI_DIST": "SIDECAR",
-    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
-    "REDOC_DIST": "SIDECAR",
-    "COMPONENT_SPLIT_REQUEST": False,
-    "SCHEMA_PATH_PREFIX": "/api/v1",
-    "COMPONENT_NO_READ_ONLY_REQUIRED": True,
-    "ENUM_NAME_OVERRIDES": {},
-    "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": False,
+    'SWAGGER_UI_SETTINGS': {
+        'url': '/schema/'
+    },
 }
 
 
@@ -136,7 +129,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # Internationalization

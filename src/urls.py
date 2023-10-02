@@ -20,7 +20,6 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("user_auth.urls")),
     path("", include("splitwise.urls"))
 ]
 
